@@ -19,4 +19,10 @@ public interface RunConfigurationProperties extends Config {
     @Key("selenium.version")
     String seleniumVersion();
 
+    @Key("timeout.long")
+    String timeoutLong();
+
+    @Key("timeout.short")
+    String timeoutShort();
+
 }

@@ -12,7 +12,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 
 public class WebDriverFactory {
-    static RunConfigurationProperties runConfigurationProperties = ConfigFactory.create(RunConfigurationProperties.class);
+    private static RunConfigurationProperties runConfigurationProperties = ConfigFactory.create(RunConfigurationProperties.class);
     private WebDriver driver;
 
 
@@ -42,8 +42,8 @@ public class WebDriverFactory {
             ChromeDriverManager.chromedriver().driverVersion(runConfigurationProperties.seleniumVersion()).setup();
         }
         WebDriver driver = new ChromeDriver();
-        Dimension dimension = new Dimension(runConfigurationProperties.browserWidth(), runConfigurationProperties.browserHeight());
-        driver.manage().window().setSize(dimension);
+        setUpDimensions(driver);
+
         return driver;
 
 
@@ -56,11 +56,16 @@ public class WebDriverFactory {
             FirefoxDriverManager.firefoxdriver().driverVersion(runConfigurationProperties.seleniumVersion()).setup();
         }
         WebDriver driver = new FirefoxDriver();
-        Dimension dimension = new Dimension(runConfigurationProperties.browserWidth(), runConfigurationProperties.browserHeight());
-        driver.manage().window().setSize(dimension);
+        setUpDimensions(driver);
+
         return driver;
 
 
+    }
+
+    private static void setUpDimensions(WebDriver driver) {
+        Dimension dimension = new Dimension(runConfigurationProperties.browserWidth(), runConfigurationProperties.browserHeight());
+        driver.manage().window().setSize(dimension);
     }
 
     public void end() {
@@ -68,13 +73,8 @@ public class WebDriverFactory {
         driver.close();
     }
 
-    public WebDriver getDriver() {
+    public WebDriver get() {
         return driver;
-    }
-
-    public static void main(String[] args) {
-        initialize();
-
     }
 
 
