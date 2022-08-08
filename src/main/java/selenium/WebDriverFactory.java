@@ -13,7 +13,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class WebDriverFactory {
     private static RunConfigurationProperties runConfigurationProperties = ConfigFactory.create(RunConfigurationProperties.class);
-    private WebDriver driver;
+    private static WebDriver driver;
 
 
     public static void initialize() {
@@ -58,6 +58,7 @@ public class WebDriverFactory {
         WebDriver driver = new FirefoxDriver();
         setUpDimensions(driver);
 
+
         return driver;
 
 
@@ -68,12 +69,12 @@ public class WebDriverFactory {
         driver.manage().window().setSize(dimension);
     }
 
-    public void end() {
+    public static void end() {
         System.out.println("driver is closing");
         driver.close();
     }
 
-    public WebDriver get() {
+    public static WebDriver get() {
         return driver;
     }
 

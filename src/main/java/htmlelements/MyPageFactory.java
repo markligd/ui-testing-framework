@@ -18,8 +18,7 @@ public class MyPageFactory {
     }
 
     public WebDriver getDriver() {
-        WebDriverFactory driverFactory = new WebDriverFactory();
-        WebDriver driver = driverFactory.get();
+        WebDriver driver = WebDriverFactory.get();
         return driver;
     }
 
